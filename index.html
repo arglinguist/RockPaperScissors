@@ -1,16 +1,23 @@
 <script>
-    function computerPlay(){ //randomly returns 'Rock', 'Paper', or 'Scissors'
+    function computerPlay(){ //randomly returns 'rock', 'paper', or 'scissors'
         let computerOptions = ['Rock', 'Paper', 'Scissors'];
         let selectedIndex = Math.floor(Math.random() * computerOptions.length);
         return computerOptions[selectedIndex];
     }
-
-    //case insensitive
+    
+    
     function playRound(playerSelection, computerSelection){ //RETURNS a string declaring the winner e.g. "You Lose! Paper beats Rock!"
+        if (playerSelection===computerSelection){
+            return 'It\'s a draw! You both chose ' + computerSelection + '.';
+        } else if ((playerSelection === 'Rock' && computerSelection==='Scissors')|| (playerSelection=== 'Scissors' && computerSeleciton==='Paper') || (playerSelection === 'Paper' && computerSelection==='Rock')){
+            return 'You win! ' + playerSelection + ' beats ' + computerSelection + '.';
+        } else {
+            return 'You lose! ' + computerSelection + ' beats ' + playerSelection + '.';
+        }
     }
 
     //test function:
-    const playerSelection = 'rock';
+    const playerSelection = 'rock';//case insensitive
     const computerSelection = computerPlay();
     console.log(playRound(playerSelection, computerSelection));
 

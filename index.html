@@ -22,8 +22,25 @@
                     return 'You lose! ' + computerSelection + ' beats ' + playerSelection + '.';
                 }
             }
-            console.log('hi there.');
-            let playerSelection = 'Rock';
+
+            function capFirstLetter(word){
+                let firstLetter = (word.charAt(0)).toUpperCase();
+                let remainingAnswer = (word.slice(1)).toLowerCase();
+                return (firstLetter + remainingAnswer);
+            }
+            
+            let playerSelection = test;
+            let playerInput = test;
+
+            playerInput = prompt('Rock, Paper, or Scissors?'); 
+            playerSelection = capFirstLetter(playerInput);
+
+            for (playerSelection != 'Rock') && (playerSelection != 'Scissors') && (playerSelection !='Paper'){
+                alert('I\'m sorry, please enter a valid response.');
+                playerInput = prompt('Rock, Paper, or Scissors?');
+                playerSelection = capFirstLetter(playerInput);
+            }
+            
             let computerSelection = computerPlay();
             console.log(playRound(playerSelection, computerSelection));
         

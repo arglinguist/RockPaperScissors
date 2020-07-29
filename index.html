@@ -28,17 +28,14 @@
                 let remainingAnswer = (word.slice(1)).toLowerCase();
                 return (firstLetter + remainingAnswer);
             }
-            
-            let playerSelection = test;
-            let playerInput = test;
 
-            playerInput = prompt('Rock, Paper, or Scissors?'); 
-            playerSelection = capFirstLetter(playerInput);
+            let playerSelection = 'test';
 
-            for (playerSelection != 'Rock') && (playerSelection != 'Scissors') && (playerSelection !='Paper'){
+            playerSelection = capFirstLetter(prompt('Rock, Paper, or Scissors?'));
+
+            while (playerSelection !== 'Rock' && playerSelection !== 'Scissors' && playerSelection !='Paper'){
                 alert('I\'m sorry, please enter a valid response.');
-                playerInput = prompt('Rock, Paper, or Scissors?');
-                playerSelection = capFirstLetter(playerInput);
+                playerSelection = capFirstLetter(prompt('Rock, Paper, or Scissors?'));
             }
             
             let computerSelection = computerPlay();

@@ -1,22 +1,21 @@
 <!DOCTYPE html>>
 <html>
     <head>
-        <title>Rock Paper Scissors: The Console Game</title>
+        <title>Rock Paper Scissors: The Console Game</title> 
     </head>
     <body>
         <main><h1>This is a console game. Please see console.</h1></main>
         <script>
-            let computerScore = 0;//global variable, adjusted/accessed by multiple functions.
-            let playerScore = 0; //global variable, adjusted/accessed by multiple functions.
+            let computerScore = 0; 
+            let playerScore = 0; //both global variables, adjusted/accessed by multiple functions.
 
-            function computerPlay(){ //works
+            function computerPlay(){ 
                 let computerOptions = ['Rock', 'Paper', 'Scissors'];
                 let selectedIndex = Math.floor(Math.random() * computerOptions.length);
                 return computerOptions[selectedIndex];
             }
             
             function playRound(playerSelection, computerSelection){ 
-                
                 if (playerSelection===computerSelection){
                     playerScore+=1;
                     computerScore+=1;

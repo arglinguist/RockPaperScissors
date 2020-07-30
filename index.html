@@ -6,45 +6,50 @@
     <body>
         <main><h1>This is a console game. Please see console.</h1></main>
         <script>
-            function computerPlay(){ 
+            let computerScore = 0;//global variable, adjusted/accessed by multiple functions.
+            let playerScore = 0; //global variable, adjusted/accessed by multiple functions.
+
+            function computerPlay(){ //works
                 let computerOptions = ['Rock', 'Paper', 'Scissors'];
                 let selectedIndex = Math.floor(Math.random() * computerOptions.length);
                 return computerOptions[selectedIndex];
             }
             
-            function playRound(playerSelection, computerSelection){ //works
+            function playRound(playerSelection, computerSelection){ 
                 
                 if (playerSelection===computerSelection){
+                    playerScore+=1;
+                    computerScore+=1;
                     return 'It\'s a draw! You both chose ' + computerSelection + '.';
                 } else if ((playerSelection === 'Rock' && computerSelection==='Scissors')|| (playerSelection=== 'Scissors' && computerSelection==='Paper') || (playerSelection === 'Paper' && computerSelection==='Rock')){
+                    playerScore+=1;
                     return 'You win! ' + playerSelection + ' beats ' + computerSelection + '.';
                 } else {
+                    computerScore+=1;
                     return 'You lose! ' + computerSelection + ' beats ' + playerSelection + '.';
                 }
             }
 
-            function capFirstLetter(word){ //works! 
+            function capFirstLetter(word){ 
                 let firstLetter = (word.charAt(0)).toUpperCase();
                 let remainingAnswer = (word.slice(1)).toLowerCase();
                 return (firstLetter + remainingAnswer);
             }
-            function getPlayerSelection(){ //works! 
+            function getPlayerSelection(){ 
                 let playerSelection = 'test';
                 playerSelection = capFirstLetter(prompt('Rock, Paper, or Scissors?'));
                 playerSelection = validateInput(playerSelection);
                 return playerSelection;
             }
 
-            function validateInput(choice){  //works! 
+            function validateInput(choice){ 
                 while (choice !== 'Rock' && choice !== 'Scissors' && choice !='Paper'){
                     alert('I\'m sorry, please enter a valid response.');
                     choice = capFirstLetter(prompt('Rock, Paper, or Scissors?'));
                 }
                 return choice;
             }
-            console.log(playRound(getPlayerSelection(), computerPlay())); //works! 
-        
-            function assessWinner(computerScore, playerScore){
+            function assessWinner(computerScore, playerScore){ 
                     if (computerScore>playerScore){
                         return 'Computer';
                     } else if (playerScore > computerScore){
@@ -53,18 +58,18 @@
                         return 'No one';
                     }
                 }
-/*
-            function game(){
-                let computerScore = 0;
-                let playerScore = 0;
-                let currentWinner = 'No one';
 
-                for (i=0, i<5, i++){
-                    playerSelection = 
-                console.log('Player: ' + playerScore + '; Computer: ' + computerScore + '.' + currentWinner + ' is winning.');
-                //uses previous function to play 5 round game that keeps score & reports a winner or loser at the end
-                //use console.log() to display results of each round & winner at end
-                */
+            function game(){
+                let currentWinner = 'No one';
+                for (i=0; i<5; i++) {
+                    console.log(playRound(getPlayerSelection(), computerPlay())); 
+                    currentWinner = assessWinner(computerScore, playerScore);
+                    console.log('Player: ' + playerScore + '; Computer: ' + computerScore + '.' + currentWinner + ' is winning.');
+                }
+                console.log ('Good game! That\'s a full five rounds. ' + currentWinner + ' won the game.');
+            }
+              game();
+                
         </script>
     </body>
 </html>

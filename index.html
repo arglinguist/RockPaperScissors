@@ -9,7 +9,7 @@
             let computerScore = 0; 
             let playerScore = 0; //both global variables, adjusted/accessed by multiple functions.
 
-            function computerPlay(){ 
+            function getComputerSelection(){ 
                 let computerOptions = ['Rock', 'Paper', 'Scissors'];
                 let selectedIndex = Math.floor(Math.random() * computerOptions.length);
                 return computerOptions[selectedIndex];
@@ -58,16 +58,16 @@
                     }
                 }
 
-            function game(){
+            function playGame(){
                 let currentWinner = 'No one';
                 for (i=0; i<5; i++) {
-                    console.log(playRound(getPlayerSelection(), computerPlay())); 
+                    console.log(playRound(getPlayerSelection(), getComputerSelection())); 
                     currentWinner = assessWinner(computerScore, playerScore);
                     console.log('Player: ' + playerScore + '; Computer: ' + computerScore + '.' + currentWinner + ' is winning.');
                 }
                 console.log ('Good game! That\'s a full five rounds. ' + currentWinner + ' won the game.');
             }
-              game();
+              playGame();
                 
         </script>
     </body>

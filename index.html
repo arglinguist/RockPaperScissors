@@ -1,13 +1,26 @@
-<!DOCTYPE html>>
+<!DOCTYPE html>
 <html>
     <head>
-        <title>Rock Paper Scissors: The Console Game</title> 
+        <title>Rock Paper Scissors</title> 
     </head>
     <body>
-        <main><h1>This is a console game. Please see console.</h1></main>
+        <main>
+            <h1>Rock Paper Scissors</h1>
+            <div id="game">
+                <p>Lets play a game!</p>
+                <p>What is your move?</p>
+                <button id="rock">Rock</button>
+                <button id="paper">Paper</button>
+                <button id="scissors">Scissors</button>
+            </div>
+            <div id="outcome">
+
+            </div>
+        </main>
         <script>
+        
             let computerScore = 0; 
-            let playerScore = 0; //both global variables, adjusted/accessed by multiple functions.
+            let playerScore = 0; 
 
             function getComputerSelection(){ 
                 let computerOptions = ['Rock', 'Paper', 'Scissors'];
@@ -29,36 +42,41 @@
                 }
             }
 
-            function capFirstLetter(word){ 
-                let firstLetter = (word.charAt(0)).toUpperCase();
-                let remainingAnswer = (word.slice(1)).toLowerCase();
-                return (firstLetter + remainingAnswer);
-            }
-            function getPlayerSelection(){ 
-                let playerSelection = 'test';
-                playerSelection = capFirstLetter(prompt('Rock, Paper, or Scissors?'));
-                playerSelection = validateInput(playerSelection);
-                return playerSelection;
-            }
-
-            function validateInput(choice){ 
-                while (choice !== 'Rock' && choice !== 'Scissors' && choice !='Paper'){
-                    alert('I\'m sorry, please enter a valid response.');
-                    choice = capFirstLetter(prompt('Rock, Paper, or Scissors?'));
-                }
-                return choice;
-            }
             function assessWinner(computerScore, playerScore){ 
-                    if (computerScore>playerScore){
-                        return 'Computer';
-                    } else if (playerScore > computerScore){
-                        return 'Player';
-                    } else {
-                        return 'No one';
-                    }
+                if (computerScore>playerScore){
+                    return 'Computer';
+                } else if (playerScore > computerScore){
+                    return 'Player';
+                } else {
+                    return 'No one';
                 }
+            }
+        //Probably a prettier way of getting button id... come back to this.
+            let playerSelection = "";
 
-            function playGame(){
+            let rock = document.getElementById('rock');
+            rock.onclick = function(){
+                console.log(playRound('Rock', getComputerSelection())); 
+                    currentWinner = assessWinner(computerScore, playerScore);
+                    console.log('Player: ' + playerScore + '; Computer: ' + computerScore + '.' + currentWinner + ' is winning.');
+            };
+
+            let paper = document.getElementById('paper');
+            paper.onclick = function(){
+                console.log(playRound('Paper', getComputerSelection())); 
+                    currentWinner = assessWinner(computerScore, playerScore);
+                    console.log('Player: ' + playerScore + '; Computer: ' + computerScore + '.' + currentWinner + ' is winning.');
+            };
+
+            let scissors = document.getElementById('scissors');
+            scissors.onclick = function(){
+                console.log(playRound('Scissors', getComputerSelection())); 
+                    currentWinner = assessWinner(computerScore, playerScore);
+                    console.log('Player: ' + playerScore + '; Computer: ' + computerScore + '.' + currentWinner + ' is winning.');
+            };
+
+           
+        /*    function playGame(){
                 let currentWinner = 'No one';
                 for (i=0; i<5; i++) {
                     console.log(playRound(getPlayerSelection(), getComputerSelection())); 
@@ -67,7 +85,7 @@
                 }
                 console.log ('Good game! That\'s a full five rounds. ' + currentWinner + ' won the game.');
             }
-              playGame();
+              playGame();*/
                 
         </script>
     </body>

@@ -1,0 +1,47 @@
+body{
+    font-size: medium;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+h1{
+   font-size: 1.5em; 
+}
+
+h3{
+ font-size: 1.2em;
+}
+
+.blue {
+    background-color: lightblue;
+    color: darkblue;
+}
+
+.pink {
+    background-color: lightpink;
+    color: darkorchid;
+}
+
+.purple {
+    background-color: lavender;
+    color: darkslateblue;
+}
+
+#game{
+    width: 70%;
+    text-align: center;
+    margin: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 0px;
+    padding-bottom: 5px;
+    border-color: black;
+    border-style: dashed;
+    border-width: 1px;
+}
+
+#outcome{
+    height: 130px;
+    border-color: black;
+    border-style: solid;
+    border-width: 2px;
+}

@@ -2,20 +2,30 @@
 <html>
     <head>
         <title>Rock Paper Scissors</title> 
+        <link href = "style.css" rel = "stylesheet">
     </head>
     <body>
         <main>
             <h1>Rock Paper Scissors</h1>
-            <div id="game">
-                <p>Lets play a game!</p>
-                <p>What is your move?</p>
-                <button id="rock">Rock</button>
-                <button id="paper">Paper</button>
-                <button id="scissors">Scissors</button>
+            <div id="content">
+                <p>Lets play a game! </p>
+                <h3>Instructions</h3>
+                <p>I will keep track of your score and let you know the results after every round. A <span class="blue">blue</span> background shows that you are winning, a <span class="purple">purple</span> background shows when there is a tie and a <span class="pink">pink</span> backround shows when the computer is winning. </p>
+                <p>Short term memory failing you? Can't remember what you picked? Your selection is displayed with an <u>underline</u> while the computer's selection is displayed with <em>italics</em>.</p>
+                <p>If you want to start over, please hit "refresh".</p>
+                <div id="game">
+                    <h3>Let's Play!</h3>
+                    <p>What is your move?</p>
+                    <button id="Rock">Rock</button>
+                    <button id="Paper">Paper</button>
+                    <button id="Scissors">Scissors</button>
+                    <button id="Reset">Reset</button>
+                    <div id="outcome">
+                        <p><strong>Results:</strong></p>
+                    </div>
+                </div>
             </div>
-            <div id="outcome">
-
-            </div>
+            
         </main>
         <script>  
         
@@ -33,13 +43,13 @@
                 if (playerSelection===computerSelection){
                     playerScore+=1;
                     computerScore+=1;
-                    return 'It\'s a draw! You both chose ' + computerSelection + '.';
+                    return 'This round is a draw! You both chose ' + "<u>" + "<em>" + computerSelection + "</em>" + "</u>" + '.';
                 } else if ((playerSelection === 'Rock' && computerSelection==='Scissors')|| (playerSelection=== 'Scissors' && computerSelection==='Paper') || (playerSelection === 'Paper' && computerSelection==='Rock')){
                     playerScore+=1;
-                    return 'You win! ' + playerSelection + ' beats ' + computerSelection + '.';
+                    return 'You win this round! ' + "<u>" + playerSelection + "</u>" + ' beats ' + "<em>" + computerSelection + "</em>" + '.';
                 } else {
                     computerScore+=1;
-                    return 'You lose! ' + computerSelection + ' beats ' + playerSelection + '.';
+                    return 'You lose this round! ' + "<em>" + computerSelection + "</em>" + ' beats ' + "<u>" + playerSelection + "</u>" + '.';
                 }
             }
 
@@ -56,28 +66,55 @@
             let output=document.getElementById('outcome');
             let para = document.createElement('p');
             
-            // there should be a way to simplify this into a single function...
-            let rock = document.getElementById('rock');
+            let rock = document.getElementById('Rock');
             rock.onclick = function(){
                 updateOutput("Rock");
             };
 
-            let paper = document.getElementById('paper');
+            let paper = document.getElementById('Paper');
             paper.onclick = function(){
                 updateOutput("Paper");
             };
 
-            let scissors = document.getElementById('scissors');
+            let scissors = document.getElementById('Scissors');
             scissors.onclick = function(){
                 updateOutput("Scissors");
             };
 
+            let reset = document.getElementById('Reset');
+            reset.onclick = function(){
+                para.innerHTML="";
+                computerScore = 0; 
+                playerScore = 0; 
+                currentWinner= "No one";
+                setBackground();
+            };
+
             function updateOutput(PlayerSelection){
+                para.innerHTML="";
                 para.innerHTML+=playRound(PlayerSelection, getComputerSelection());
                 currentWinner = assessWinner(computerScore, playerScore);
-                para.innerHTML += "<br>" + 'Player: ' + playerScore + '; Computer: ' + computerScore + '.' + currentWinner + ' is winning.' + "<br>";
+                para.innerHTML += "<br>" + 'Player: ' + playerScore + '; Computer: ' + computerScore + '.' + "<br>" + "<strong>" + currentWinner + "</strong>" + ' is winning.' + "<br>";
                 output.appendChild(para);
+                setBackground();
             }
+
+            function setBackground(){
+                let content = document.getElementById("outcome");
+                if (currentWinner==="Player"){
+                    //document.body.style.backgroundColor = "lightblue";
+                    content.className="blue";
+                } else if (currentWinner==="Computer") {
+                    //document.body.style.backgroundColor = "lightpink";
+
+                    content.className="pink";
+                } else {
+                   // document.body.style.backgroundColor = "lightgreen";
+
+                    content.className="purple";
+                }
+            }
+
                 
         </script>
     </body>

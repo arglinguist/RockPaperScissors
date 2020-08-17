@@ -17,10 +17,11 @@
 
             </div>
         </main>
-        <script>
+        <script>  
         
             let computerScore = 0; 
             let playerScore = 0; 
+            let currentWinner= "No one";
 
             function getComputerSelection(){ 
                 let computerOptions = ['Rock', 'Paper', 'Scissors'];
@@ -51,41 +52,32 @@
                     return 'No one';
                 }
             }
-        //Probably a prettier way of getting button id... come back to this.
             let playerSelection = "";
-
+            let output=document.getElementById('outcome');
+            let para = document.createElement('p');
+            
+            // there should be a way to simplify this into a single function...
             let rock = document.getElementById('rock');
             rock.onclick = function(){
-                console.log(playRound('Rock', getComputerSelection())); 
-                    currentWinner = assessWinner(computerScore, playerScore);
-                    console.log('Player: ' + playerScore + '; Computer: ' + computerScore + '.' + currentWinner + ' is winning.');
+                updateOutput("Rock");
             };
 
             let paper = document.getElementById('paper');
             paper.onclick = function(){
-                console.log(playRound('Paper', getComputerSelection())); 
-                    currentWinner = assessWinner(computerScore, playerScore);
-                    console.log('Player: ' + playerScore + '; Computer: ' + computerScore + '.' + currentWinner + ' is winning.');
+                updateOutput("Paper");
             };
 
             let scissors = document.getElementById('scissors');
             scissors.onclick = function(){
-                console.log(playRound('Scissors', getComputerSelection())); 
-                    currentWinner = assessWinner(computerScore, playerScore);
-                    console.log('Player: ' + playerScore + '; Computer: ' + computerScore + '.' + currentWinner + ' is winning.');
+                updateOutput("Scissors");
             };
 
-           
-        /*    function playGame(){
-                let currentWinner = 'No one';
-                for (i=0; i<5; i++) {
-                    console.log(playRound(getPlayerSelection(), getComputerSelection())); 
-                    currentWinner = assessWinner(computerScore, playerScore);
-                    console.log('Player: ' + playerScore + '; Computer: ' + computerScore + '.' + currentWinner + ' is winning.');
-                }
-                console.log ('Good game! That\'s a full five rounds. ' + currentWinner + ' won the game.');
+            function updateOutput(PlayerSelection){
+                para.innerHTML+=playRound(PlayerSelection, getComputerSelection());
+                currentWinner = assessWinner(computerScore, playerScore);
+                para.innerHTML += "<br>" + 'Player: ' + playerScore + '; Computer: ' + computerScore + '.' + currentWinner + ' is winning.' + "<br>";
+                output.appendChild(para);
             }
-              playGame();*/
                 
         </script>
     </body>
